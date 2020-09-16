@@ -1,0 +1,163 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>角色数据表格</title>
+
+    <link rel="stylesheet" href="../UI/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="../css/roles/role.css" />
+</head>
+
+<body>
+<div id="search-header">
+    <form class="layui-form" >
+        <div class="layui-form-item" style="margin-top:10px ;">
+            <div class="layui-inline">
+                <label class="layui-form-label">角色名</label>
+                <div class="layui-input-inline">
+                    <label>
+                        <input id="roleNameInput" type="text" name="roleName" placeholder="角色名" autocomplete="off" class="layui-input">
+                    </label>
+                </div>
+            </div>
+            <div class="layui-form layui-inline" >
+                <label class="layui-form-label">是否可用</label>
+                <div class="layui-input-inline"  >
+                    <label for="usable"></label>
+                    <select name="usable" id="usable" >
+                    <option value="" >请选择</option>
+                    <option value="Y">可用</option>
+                    <option value="N">已禁用</option>
+                </select>
+                </div>
+            </div>
+
+            <div class="layui-inline">
+                <label class="layui-form-label"></label>
+                <div class="layui-input-inline">
+                    <button class="layui-btn" lay-submit="roleSearchBtn" lay-filter="roleSearchBtn">
+                        <i class="layui-icon layui-icon-search"></i>
+                        查询
+                    </button>
+                    <button class="layui-btn" lay-filter="refresh">
+                        <i class="layui-icon layui-icon-search"></i>
+                        重置
+                    </button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<!--数据表格-->
+<table id="roles" lay-filter="data"></table>
+
+</body>
+
+<!--<%&#45;&#45;添加用户模态框&#45;&#45;%>-->
+<div id="addRole" style="display: none;margin-top: 25px;">
+    <form class="layui-form">
+        <div class="layui-form-item" style="width: 300px">
+            <label class="layui-form-label">角色名</label>
+            <div class="layui-input-block">
+                <label>
+                    <input type="text" id="roleNameSubmit" required lay-verify="required" placeholder="请输入角色名" autocomplete="off" class="layui-input">
+                </label>
+            </div>
+        </div>
+
+        <div class="layui-form-item" style="width: 300px">
+            <label class="layui-form-label">简称</label>
+            <div class="layui-input-block">
+                <label>
+                    <input type="text" id="roleAbbr" class="layui-input" required lay-verify="required" placeholder="">
+                </label>
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">描述</label>
+            <div class="layui-input-block">
+                <label>
+                    <textarea placeholder="签名" cols="30" rows="5" id="description">
+
+                    </textarea>
+                </label>
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <button type="submit" id="addUserSubBtn" class="layui-btn my-bg-green layui-btn-sm" lay-submit lay-filter="addUserSubBtn">立即提交</button>
+                <button type="reset" class="layui-btn modalClose layui-bg-orange layui-btn-sm">重置</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<!--修改-->
+<div id="updateRole" style="display: none;margin-top: 20px;">
+    <form class="layui-form">
+        <div class="layui-form-item" style="width: 300px;">
+            <label class="layui-form-label">角色名</label>
+            <div class="layui-input-block">
+                <input type="text" id="updateRoleName" required lay-verify="required" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+
+        <div class="layui-form-item" style="width: 300px">
+            <label class="layui-form-label">简称</label>
+            <div class="layui-input-block">
+                <label>
+                    <input type="text" id="updateRoleAbbr" class="layui-input" required lay-verify="required" placeholder="">
+                </label>
+            </div>
+        </div>
+        <div class="layui-form layui-inline" >
+            <label class="layui-form-label">是否可用</label>
+            <div class="layui-input-inline"  >
+                <label for="usable"></label>
+                <select name="updateUsable" id="updateUsable">
+                    <option value="" >请选择</option>
+                    <option value="Y">可用</option>
+                    <option value="N">已禁用</option>
+                </select>
+            </div>
+        </div>
+
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">描述</label>
+            <div class="layui-input-block">
+                <label>
+                    <textarea placeholder="描述" cols="30" rows="5" id="updateDescription">
+
+                    </textarea>
+                </label>
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <button id="updateBtn" class="layui-btn my-bg-green layui-btn-sm" lay-submit lay-filter="updateBtn">确认修改</button>
+                <button id="cancel" class="layui-btn modalClose layui-bg-orange layui-btn-sm">取消</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<script src="../UI/layui/layui.all.js" charset="UTF-8"></script>
+<script type="text/javascript" src="../js/roles/role.js" charset="UTF-8"></script>
+<!-- 头部工具栏 -->
+<script type="text/html" id="roleToolbar">
+    <div class="layui-btn-group">
+		<span class="btnCont">
+ 			<button title="添加"  lay-event="addRole" class=" layui-btn layui-btn-primary layui-btn-sm"><i class="layui-icon">&#xe654;</i>添加</button>
+			<button title="修改"  lay-event="updateRole" class=" layui-btn layui-btn-primary layui-btn-sm"><i class="layui-icon">&#xe642;</i>修改 </button>
+			<button title="禁用"  lay-event="frozenRecord" class=" layui-btn layui-btn-primary layui-btn-sm"><i class="layui-icon">&#xe702;</i>禁用 </button>
+			<button title="回复"  lay-event="restoreRecord" class=" layui-btn layui-btn-primary layui-btn-sm"><i class="layui-icon">&#xe666;</i>恢复 </button>
+		</span>
+    </div>
+</script>
+</html>

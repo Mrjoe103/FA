@@ -1,0 +1,5 @@
+com\yidu\fund\systemmanagement\rolemanagement\service\Impl\RoleServiceImpl.class
+com\yidu\fund\systemmanagement\rolemanagement\domain\Role.class
+com\yidu\fund\systemmanagement\rolemanagement\controller\RoleController.class
+com\yidu\fund\systemmanagement\rolemanagement\service\RoleService.class
+com\yidu\fund\systemmanagement\rolemanagement\dao\RoleDao.class

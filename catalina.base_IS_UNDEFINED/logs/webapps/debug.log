@@ -1,0 +1,3 @@
+2020-09-10 11:56:56.708 [main] DEBUG c.y.f.s.rolemanagement.dao.RoleDao.findAll -==>  Preparing: select * from t_role 
+2020-09-10 11:56:56.742 [main] DEBUG c.y.f.s.rolemanagement.dao.RoleDao.findAll -==> Parameters: 
+2020-09-10 11:56:56.762 [main] DEBUG c.y.f.s.rolemanagement.dao.RoleDao.findAll -<==      Total: 4
